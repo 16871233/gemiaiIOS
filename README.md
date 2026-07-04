@@ -15,10 +15,14 @@
 - 隐私政策：`https://16871233.github.io/gemiaiIOS/privacy.html`
 - 用户协议：`https://16871233.github.io/gemiaiIOS/terms.html`
 - 联系支持：`https://16871233.github.io/gemiaiIOS/support.html`
+- Privacy Policy: `https://16871233.github.io/gemiaiIOS/privacy-en.html`
+- Terms of Use: `https://16871233.github.io/gemiaiIOS/terms-en.html`
+- Support: `https://16871233.github.io/gemiaiIOS/support-en.html`
 
 App Store Connect 中：
 
 - `Privacy Policy URL` 填隐私政策链接。
 - `Support URL` 填联系支持链接。
+- 国际版地区可以填英文链接；中文地区可以填中文链接。
 
 如果你给 GitHub Pages 绑定自定义域名，也可以使用自定义域名链接。
