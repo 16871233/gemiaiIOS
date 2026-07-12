@@ -51,7 +51,14 @@
           <li>支持邮箱注册、在线充值和按量使用。</li>
           <li>提供配置文档与问题反馈、商务咨询、企业技术支持。</li>
         </ul>
-        <p class="promo-endpoint">OpenAI-compatible 地址：<code>https://api.linktoagi.com/v1</code></p>
+        <div class="promo-endpoint">
+          <span>OpenAI-compatible 地址</span>
+          <div class="endpoint-copy">
+            <input type="text" value="https://api.linktoagi.com/v1" readonly aria-label="LinkAGI API 地址">
+            <button type="button" data-copy-address data-success="已复制" data-failure="请手动复制">复制地址</button>
+            <span class="copy-status" role="status" aria-live="polite"></span>
+          </div>
+        </div>
         <div class="promo-actions">
           <a class="promo-button" href="https://api.linktoagi.com" target="_blank" rel="noopener noreferrer">进入 LinkAGI 控制台</a>
           <a class="promo-button secondary" href="https://docs.linktoagi.com" target="_blank" rel="noopener noreferrer">查看配置文档</a>
@@ -76,5 +83,26 @@
 
     <p class="footer"><a href="./index.html">返回首页</a> · <a href="./support-en.html">English version</a></p>
   </main>
+  <script>
+    document.querySelectorAll('[data-copy-address]').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const input = button.closest('.endpoint-copy')?.querySelector('input');
+        const status = button.closest('.endpoint-copy')?.querySelector('.copy-status');
+        if (!input) return;
+        let copied = false;
+        try {
+          await navigator.clipboard.writeText(input.value);
+          copied = true;
+        } catch (_) {
+          input.focus();
+          input.select();
+          copied = document.execCommand('copy');
+          input.setSelectionRange(0, 0);
+        }
+        if (status) status.textContent = copied ? button.dataset.success : button.dataset.failure;
+        window.setTimeout(() => { if (status) status.textContent = ''; }, 2200);
+      });
+    });
+  </script>
 </body>
 </html>

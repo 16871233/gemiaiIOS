@@ -51,7 +51,14 @@
           <li>Sign up by email, top up online, and pay as you use.</li>
           <li>Configuration docs plus issue feedback, business, and enterprise support.</li>
         </ul>
-        <p class="promo-endpoint">OpenAI-compatible endpoint: <code>https://api.linktoagi.com/v1</code></p>
+        <div class="promo-endpoint">
+          <span>OpenAI-compatible endpoint</span>
+          <div class="endpoint-copy">
+            <input type="text" value="https://api.linktoagi.com/v1" readonly aria-label="LinkAGI API endpoint">
+            <button type="button" data-copy-address data-success="Copied" data-failure="Copy manually">Copy address</button>
+            <span class="copy-status" role="status" aria-live="polite"></span>
+          </div>
+        </div>
         <div class="promo-actions">
           <a class="promo-button" href="https://api.linktoagi.com" target="_blank" rel="noopener noreferrer">Open LinkAGI Console</a>
           <a class="promo-button secondary" href="https://docs.linktoagi.com" target="_blank" rel="noopener noreferrer">View Setup Docs</a>
@@ -76,5 +83,26 @@
 
     <p class="footer"><a href="./index.html">Home</a> · <a href="./support.html">简体中文版本</a></p>
   </main>
+  <script>
+    document.querySelectorAll('[data-copy-address]').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const input = button.closest('.endpoint-copy')?.querySelector('input');
+        const status = button.closest('.endpoint-copy')?.querySelector('.copy-status');
+        if (!input) return;
+        let copied = false;
+        try {
+          await navigator.clipboard.writeText(input.value);
+          copied = true;
+        } catch (_) {
+          input.focus();
+          input.select();
+          copied = document.execCommand('copy');
+          input.setSelectionRange(0, 0);
+        }
+        if (status) status.textContent = copied ? button.dataset.success : button.dataset.failure;
+        window.setTimeout(() => { if (status) status.textContent = ''; }, 2200);
+      });
+    });
+  </script>
 </body>
 </html>

@@ -155,10 +155,48 @@ li {
   font-size: 14px;
 }
 
-.promo-endpoint code {
+.endpoint-copy {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.endpoint-copy input {
+  min-width: 0;
+  flex: 1;
+  height: 40px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
   color: var(--ink);
+  font: inherit;
   font-size: 13px;
-  word-break: break-all;
+}
+
+.endpoint-copy button {
+  flex: 0 0 auto;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--blue);
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.endpoint-copy button:hover {
+  filter: brightness(1.06);
+}
+
+.copy-status {
+  min-width: 42px;
+  color: var(--teal);
+  font-size: 12px;
 }
 
 .promo-actions {
@@ -216,5 +254,14 @@ li {
 
   .support-grid {
     grid-template-columns: 1fr;
+  }
+
+  .endpoint-copy {
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+
+  .endpoint-copy input {
+    flex-basis: 100%;
   }
 }
